@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  la-jupyter:
+    container_name: la_jupyter
+    init: true
+    build:
+      context: .  
+      dockerfile: ./notebooks/jupyter.dockerfile
+    volumes:
+      - type: bind
+        source: ./notebooks/
+        target: /app
+    networks:
+      - la-jupyter-network
+    ports:
+      - "8888:8888"
+
+
+networks:
+  la-jupyter-network:
